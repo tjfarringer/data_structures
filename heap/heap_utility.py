@@ -12,7 +12,8 @@
 # Key property in a heap:  In a heap, for every node 𝑥 with parent 𝑝, the key in 𝑝 is smaller than or equal to the key in 𝑥
 # The parent of the current node can be computed by dividing the index of the current node by 2.
 
-class Heap():
+
+class Min_Heap():
     def __init__(self):
      self.heapList = [0]
      self.currentSize = 0
@@ -58,7 +59,7 @@ class Heap():
         self.currentSize = self.currentSize - 1
         self.heapList.pop()
         self.percDown(1)
-        return retval
+        return min_val
 
     def buildHeap(self, alist):
         '''
@@ -72,3 +73,31 @@ class Heap():
         while (i > 0):
             self.percDown(i)
             i = i - 1
+
+    def extract_min(self):
+        return self.heapList[1]
+
+
+
+class Max_Heap():
+    def __init__(self):
+     self.heapList = [0]
+     self.currentSize = 0
+
+    def percolateUp(self, i):
+        while i // 2 > 0: # allow for the possibility to go all the way up the tree
+            if self.heapList[i // 2] < self.heapList[i]:
+                self.heapList[i], self.heapList[i // 2] = self.heapList[i // 2], self.heapList[i]
+            i = i // 2
+
+    def percolateDown(self, i):
+        while i * 2 <= self.currentSize: # allow for the possibility to go all the way down the tree
+            mc = self.minChild(i)
+            if self.heapList[i] < self.heapList[mc]:
+                self.heapList[i], self.heapList[mc] = self.heapList[mc], self.heapList[i]
+            i = i * 2
+
+    def insert(self, k):
+        self.heapList.append(k)
+        self.currentSize += 1
+        self.percolateDown(self, self.currentSize) # want to pass the index of k, which is equal to the currentSize of the heap
