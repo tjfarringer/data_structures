@@ -35,16 +35,16 @@ def rebalance_heap(min_heap, min_heap_size, max_heap, max_heap_size):
 
     return min_heap, max_heap
 
-def min_heap_insert(min_heap, min_heap_size):
-    min_heap.insert()
-    min_heap_max = min_heap.extract_min()
+def min_heap_insert(value, min_heap, min_heap_size):
+    min_heap.insert(value)
+    min_heap_max = min_heap.extract_max()
     min_heap_size += 1
 
     return min_heap, min_heap_max, min_heap_size
 
-def max_heap_insert(max_heap, max_heap_size):
-    max_heap.insert()
-    max_heap_min = max_heap.extract_max()
+def max_heap_insert(value, max_heap, max_heap_size):
+    max_heap.insert(value)
+    max_heap_min = max_heap.extract_min()
     max_heap_size += 1
 
     return max_heap, max_heap_min, max_heap_size
@@ -64,13 +64,14 @@ def main():
     for new_element in elements_to_insert:
         # add first element to min-heap
         if elements_added < 2:
-            min_heap, min_heap_max, min_heap_size = min_heap_insert(min_heap, min_heap_size)
+            min_heap, min_heap_max, min_heap_size = min_heap_insert(new_element, min_heap, min_heap_size)
         elif new_element < min_heap_max:
-            min_heap, min_heap_max, min_heap_size = min_heap_insert(min_heap, min_heap_size)
+            min_heap, min_heap_max, min_heap_size = min_heap_insert(new_element, min_heap, min_heap_size)
         else:
-            max_heap, max_heap_min, max_heap_size = max_heap_insert(max_heap, max_heap_size)
+            max_heap, max_heap_min, max_heap_size = max_heap_insert(new_element, max_heap, max_heap_size)
 
         min_heap, max_heap = rebalance_heap(min_heap, min_heap_size, max_heap, max_heap_size)
         elements_added += 1
 
 
+main()

@@ -58,7 +58,7 @@ class Min_Heap():
         self.heapList[1] = self.heapList[self.currentSize]
         self.currentSize = self.currentSize - 1
         self.heapList.pop()
-        self.percDown(1)
+        self.percolateDown(1)
         return min_val
 
     def buildHeap(self, alist):
@@ -71,7 +71,7 @@ class Min_Heap():
         self.currentSize = len(alist)
         self.heapList = [0] + alist[:]
         while (i > 0):
-            self.percDown(i)
+            self.percolateDown(i)
             i = i - 1
 
     def extract_min(self):
@@ -100,4 +100,7 @@ class Max_Heap():
     def insert(self, k):
         self.heapList.append(k)
         self.currentSize += 1
-        self.percolateDown(self, self.currentSize) # want to pass the index of k, which is equal to the currentSize of the heap
+        self.percolateDown(self.currentSize) # want to pass the index of k, which is equal to the currentSize of the heap
+
+    def extract_max(self):
+        return self.heapList[1]
