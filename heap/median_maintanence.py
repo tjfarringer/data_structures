@@ -15,6 +15,13 @@ from heap_utility import Min_Heap, Max_Heap
 # check where the new element lies WRT low_heap max and high_heap min
 # might need to rebalance as time goes on
 
+
+# Todo: For some reason some numbers get dropped off.  Ex:  the 4 after adding the 6
+# Todo: Add tests..  How would they work?
+
+
+
+
 def build_heaps():
     min_heap = Max_Heap()
     max_heap = Min_Heap()
