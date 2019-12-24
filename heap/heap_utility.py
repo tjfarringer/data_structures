@@ -43,7 +43,7 @@ class Min_Heap():
     def insert(self, k):
         self.heapList.append(k)
         self.currentSize += 1
-        self.percolateUp(self, self.currentSize) # want to pass the index of k, which is equal to the currentSize of the heap
+        self.percolateUp(self.currentSize) # want to pass the index of k, which is equal to the currentSize of the heap
 
     def delMin(self):
         '''
@@ -104,3 +104,19 @@ class Max_Heap():
 
     def extract_max(self):
         return self.heapList[1]
+
+    def delMax(self):
+        '''
+        Largest element is the min.  Hard part is restoring the tree afterwards.
+
+        Two steps to fix:
+        1. restore the root item by taking the last item in the list and moving it to the root position
+        2. restore the heap order property by pushing the new root node down the tree to its proper position
+        :return:
+        '''
+        max_val = self.heapList[1]
+        self.heapList[1] = self.heapList[self.currentSize]
+        self.currentSize = self.currentSize - 1
+        self.heapList.pop()
+        self.percolateDown(1)
+        return max_val
