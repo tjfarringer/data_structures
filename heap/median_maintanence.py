@@ -65,7 +65,7 @@ def max_heap_insert(value, max_heap):
     return max_heap, max_heap_min
 
 
-def main():
+def main(elements_to_insert=[2, 7, 4, 2, 6, 9, 10, 11, 100, 50, 75, 23, 99, 15]):
     min_heap, max_heap = build_heaps()
     elements_added = min_heap.currentSize + max_heap.currentSize
 
@@ -73,8 +73,6 @@ def main():
     median = 0
 
     print('min size: ', min_heap.currentSize)
-
-    elements_to_insert = [2, 7, 4, 2, 6, 9, 10, 11, 100, 50, 75, 23, 99, 15]
 
     for new_element in elements_to_insert:
         print("adding element")
